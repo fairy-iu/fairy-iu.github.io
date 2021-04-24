@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>Hello World | Hexo</title>
+  <title>vuex刷新保存状态、登录状态保存 | Hexo</title>
   <meta name="author" content="John Doe" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="1、页面权限控制这个常见做法是，在路由跳转的时候做判断，通过router钩子函数判断页面是否需要登录首先在router配置 meta属性  然后在钩子函数里面判断  to.meta.requireAuth为true就跳去登录页面登录，否则就直接到要访问的页面 2、vuex页面F5刷新后维持刷新前的状态不变首先在store的index.js中，state，增加页面要保存的变量，并且将它们的值和ses">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2021/04/22/hello-world/index.html">
+<meta property="og:title" content="vuex刷新保存状态、登录状态保存">
+<meta property="og:url" content="http://example.com/2021/04/23/vuex%E5%88%B7%E6%96%B0%E4%BF%9D%E5%AD%98%E7%8A%B6%E6%80%81%E3%80%81%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E4%BF%9D%E5%AD%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1、页面权限控制这个常见做法是，在路由跳转的时候做判断，通过router钩子函数判断页面是否需要登录首先在router配置 meta属性  然后在钩子函数里面判断  to.meta.requireAuth为true就跳去登录页面登录，否则就直接到要访问的页面 2、vuex页面F5刷新后维持刷新前的状态不变首先在store的index.js中，state，增加页面要保存的变量，并且将它们的值和ses">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
-<meta property="article:published_time" content="2021-04-22T14:37:24.043Z">
-<meta property="article:modified_time" content="2021-04-22T14:37:24.043Z">
+<meta property="article:published_time" content="2021-04-23T08:58:37.000Z">
+<meta property="article:modified_time" content="2021-04-23T09:07:52.913Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -140,16 +140,16 @@
     <article>
         <div class="kratos-hentry kratos-post-inner clearfix">
             <header class="kratos-entry-header">
-                <h1 class="kratos-entry-title text-center">Hello World</h1>
+                <h1 class="kratos-entry-title text-center">vuex刷新保存状态、登录状态保存</h1>
                 
                 <ul class="kratos-post-meta text-center">
-                    <li><i class="fa fa-calendar"></i> 2021-04-22</li>
+                    <li><i class="fa fa-calendar"></i> 2021-04-23</li>
                     <li><i class="fa fa-user"></i> 作者 John Doe</li>
                     <li>
                         <i class="fa fa-edit"></i> 
                         
                         
-                            444
+                            942
                         
                         字
                     </li>
@@ -158,23 +158,38 @@
             </header>
             <div class="kratos-post-content">
                 <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                    本文最后编辑于 <time datetime="1619102244043"></time> 前，其中的内容可能需要更新。
+                    本文最后编辑于 <time datetime="1619168872913"></time> 前，其中的内容可能需要更新。
                 </div>
                 
                 <hr />
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h2 id="1、页面权限控制"><a href="#1、页面权限控制" class="headerlink" title="1、页面权限控制"></a>1、页面权限控制</h2><p>这个常见做法是，在路由跳转的时候做判断，通过router钩子函数判断页面是否需要登录<br>首先在router配置 meta属性</p>
+<p><img src="https://pic4.zhimg.com/80/v2-98324f6035e8f4b25e4938bbc011754b_720w.jpg" alt="img"></p>
+<p>然后在钩子函数里面判断</p>
+<p><img src="https://pic4.zhimg.com/80/v2-00cf2d8a2061798f1a1721f20a104fe7_720w.jpg" alt="img"></p>
+<p>to.meta.requireAuth为true就跳去登录页面登录，否则就直接到要访问的页面</p>
+<h2 id="2、vuex页面F5刷新后维持刷新前的状态不变"><a href="#2、vuex页面F5刷新后维持刷新前的状态不变" class="headerlink" title="2、vuex页面F5刷新后维持刷新前的状态不变"></a>2、vuex页面F5刷新后维持刷新前的状态不变</h2><p>首先在store的index.js中，state，增加页面要保存的变量，并且将它们的值和sessionStorage里面的绑定</p>
+<p><img src="https://pic1.zhimg.com/80/v2-0f2d2feaa6317fbf3cbb3fca63ec206c_720w.jpg" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-0bc1f1b1e7c97db8d20e67788e3f17fa_720w.jpg" alt="img"></p>
+<p>然后再新增mutations，这是将变量写入sessionStorage的方法</p>
+<p><img src="https://pic3.zhimg.com/80/v2-536ce49677309f2ac4da3265c45c4a76_720w.jpg" alt="img"></p>
+<p>接着就可以在登录函数中这样调用，登录成功后将需要的变量写进sessionStorage</p>
+<p><img src="https://pic2.zhimg.com/80/v2-7a388a6efd55daf800abf43e60a850c1_720w.jpg" alt="img"></p>
+<p>在路由的钩子函数里面可以这样将变量取回来，那样页面刷新后，也能将刷新前的状态保持</p>
+<p><img src="https://pic4.zhimg.com/80/v2-ede112b6672094819a4f63ce988f85c7_720w.jpeg" alt="img"></p>
+<h2 id="3、登录状态保存"><a href="#3、登录状态保存" class="headerlink" title="3、登录状态保存"></a>3、登录状态保存</h2><p>我们在网页中，常常有一个功能，就是像下图那样，勾选后几天内免登录，也就是记住登录状态<br>这个较上面的功能有一个不一样的地方就是，上面的刷新，假如我是登录状态，我将浏览器关闭之后再打开，再打开浏览器，我还是需要登录的<br>那如果我勾选了几天内免登录，登录后没有退出，然后把浏览器关闭了，再重新打开，是不需要登录的，这个功能怎么实现呢?<br>这就要用到localStorage来实现了</p>
+<p><img src="https://pic4.zhimg.com/80/v2-2ca43bac3f1c4639faa36cdfaa0b4ccb_720w.jpg" alt="img"></p>
+<p>首先，一样需要在store的index.js中，state，增加页面要保存的变量，并且将它们的值和localStorage里面的绑定</p>
+<p><img src="https://pic1.zhimg.com/80/v2-a500ec7473a721ba10300cb7267f20e8_720w.jpg" alt="img"></p>
+<p>然后再新增mutations，这是将变量写入localStorage的方法</p>
+<p><img src="https://pic3.zhimg.com/80/v2-b450283597540f123664a6198d8a0f06_720w.jpg" alt="img"></p>
+<p>需要一个自动登录的方法，如果是勾选了就为true，然后就会将需要用到的变量写到localStorage</p>
+<p><img src="https://pic1.zhimg.com/80/v2-4278d4026dff2cd9b3feeaf1e7506e44_720w.jpg" alt="img"></p>
+<p>当然还有登出的</p>
+<p><img src="https://pic3.zhimg.com/80/v2-f3e6b7c4056850d7fdce03786e9f890a_720w.jpg" alt="img"></p>
+<p>接着就可以在登录函数中，根据有没有勾选自动登录来判断，是不是在登录成功后将需要的变量写进localStorage</p>
+<p><img src="https://pic3.zhimg.com/80/v2-2cfae7bce4a49442c22314176c658b96_720w.jpg" alt="img"></p>
+<p>最后在路由的钩子函数里面做相应的处理<br>是不是需要登录，然后有没有勾选自动登录，根据布尔值来进行不同的路由操作，然后需要用到的变量操作其实和上面保持页面刷新后的是大同小异的<br>当然这里还需要一个后台的校验接口，就是在勾选了自动登录后，如果是10天期限，那就要在进入true 的分支后再请求后台去校验token是否过期，如果过期就要重新登录了，否则就一切照常</p>
+<p><img src="https://pic4.zhimg.com/80/v2-81cd6818b42d4e220b0d609f22137a9f_720w.jpg" alt="img"></p>
 
             </div>
             
@@ -228,7 +243,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2021/04/22/hello-world/",
+                text: "http://example.com/2021/04/23/vuex%E5%88%B7%E6%96%B0%E4%BF%9D%E5%AD%98%E7%8A%B6%E6%80%81%E3%80%81%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E4%BF%9D%E5%AD%98/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -240,9 +255,13 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2021/04/22/hello-world/";
-            const title         = "「Hello World」";
-            const excerpt       = `Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...`;
+            const hostUrl       = "http://example.com/2021/04/23/vuex%E5%88%B7%E6%96%B0%E4%BF%9D%E5%AD%98%E7%8A%B6%E6%80%81%E3%80%81%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E4%BF%9D%E5%AD%98/";
+            const title         = "「vuex刷新保存状态、登录状态保存」";
+            const excerpt       = `1、页面权限控制这个常见做法是，在路由跳转的时候做判断，通过router钩子函数判断页面是否需要登录首先在router配置 meta属性
+
+然后在钩子函数里面判断
+
+to.meta.requireAuth为true就跳去登录页面登录，...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -264,7 +283,7 @@
                         
                     </div>
                     <div class="pull-date">
-                    <span>最后编辑：2021-04-22</span>
+                    <span>最后编辑：2021-04-23</span>
                     </div>
                 </div>
             </footer>
@@ -272,9 +291,13 @@
         
             <nav class="navigation post-navigation clearfix" role="navigation">
                 
+                <div class="nav-previous clearfix">
+                    <a title=" My First Artical" href="/2021/04/22/My-First-Artical/">&lt; 上一篇</a>
+                </div>
+                
                 
                 <div class="nav-next clearfix">
-                    <a title=" My First Artical" href="/2021/04/22/My-First-Artical/">下一篇 &gt;</a>
+                    <a title=" 前端开发网站" href="/2021/04/23/前端开发网站/">下一篇 &gt;</a>
                 </div>
                 
             </nav>
