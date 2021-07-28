@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>React-router V4.0 | Hexo</title>
+  <meta name="author" content="John Doe" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Router, react" />
+  
+  <meta name="description" content="React Router更新到4.0，使用起来发生了很大的变化，这个变化只要是指***完全***的组件化—–嵌套的JSX路由器！接下来，像刚接触路由一样的姿势，一探究竟（简书文字太小，建议大家调整一下页面比例）  使用React脚手架搭建项目结构create-react-app内在使用的npm，所以速度会很慢，你cnpm的大刀已经饥渴难耐，可以考虑设置npm为cnpm镜像源： 1234npm c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-router V4.0">
+<meta property="og:url" content="http://example.com/2021/04/25/React-router-V4-0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="React Router更新到4.0，使用起来发生了很大的变化，这个变化只要是指***完全***的组件化—–嵌套的JSX路由器！接下来，像刚接触路由一样的姿势，一探究竟（简书文字太小，建议大家调整一下页面比例）  使用React脚手架搭建项目结构create-react-app内在使用的npm，所以速度会很慢，你cnpm的大刀已经饥渴难耐，可以考虑设置npm为cnpm镜像源： 1234npm c">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2021-04-25T01:12:28.000Z">
+<meta property="article:modified_time" content="2021-07-28T06:32:51.664Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="Router">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">作者博客</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Hexo</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Hexo</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">React-router V4.0</h1>
+                
+                <ul class="kratos-post-meta text-center">
+                    <li><i class="fa fa-calendar"></i> 2021-04-25</li>
+                    <li><i class="fa fa-user"></i> 作者 John Doe</li>
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~10.07K
+                        
+                        字
+                    </li>
+                    
+                </ul>
+            </header>
+            <div class="kratos-post-content">
+                <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                    本文最后编辑于 <time datetime="1627453971664"></time> 前，其中的内容可能需要更新。
+                </div>
+                
+                <hr />
+                <blockquote>
+<p>React Router更新到4.0，使用起来发生了很大的变化，这个变化只要是指***完全***的组件化—–嵌套的JSX路由器！接下来，像刚接触路由一样的姿势，一探究竟（简书文字太小，建议大家调整一下页面比例）</p>
+</blockquote>
+<h4 id="使用React脚手架搭建项目结构"><a href="#使用React脚手架搭建项目结构" class="headerlink" title="使用React脚手架搭建项目结构"></a>使用React脚手架搭建项目结构</h4><p><code>create-react-app</code>内在使用的<code>npm</code>，所以速度会很慢，你<code>cnpm</code>的大刀已经饥渴难耐，可以考虑设置<code>npm</code>为cnpm镜像源：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="keyword">set</span> registry http:<span class="comment">//registry.npm.taobao.org/</span></span><br><span class="line"><span class="comment">//通过get registy检测是否成功</span></span><br><span class="line">npm <span class="keyword">get</span> registry</span><br><span class="line">&gt;http:<span class="comment">//registry.npm.taobao.org/</span></span><br></pre></td></tr></table></figure>
+
+<p>生成的项目结构<code>src</code>目录如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7687940-9b22fce196e536c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/524/format/webp" alt="img"></p>
+<p>a.png</p>
+<p>因为来回切换页面可能会破坏读文的愉悦心情，所以咱们主要在<code>app.js</code>内部大动手脚</p>
+<h5 id="app-js基本内容"><a href="#app-js基本内容" class="headerlink" title="app.js基本内容"></a>app.js基本内容</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建App根组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;h1&gt;hello React!&lt;/h1&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<p>项目已经启动，不接受任何形式的报错</p>
+<h5 id="下载react-router"><a href="#下载react-router" class="headerlink" title="下载react-router"></a>下载react-router</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install react-router-dom --save</span><br></pre></td></tr></table></figure>
+
+<p>在app.js内部引入</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引入路由组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; BrowserRouter, Route,Link&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建App根组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;h1&gt;hello React!&lt;/h1&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
+
+<p>接下来我创建函数式组件作为页面级组件</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首页组件</span></span><br><span class="line"><span class="keyword">let</span> Index=<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">        &lt;h2&gt;我是首页内容&lt;/h2&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//列表组件</span></span><br><span class="line"><span class="keyword">let</span> List=<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;我是列表页&lt;/h2&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li&gt;我是列表元素&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;我是列表元素&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;我是列表元素&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在App组件内部配置路由组件</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;h1&gt;hello React!&lt;/h1&gt;</span><br><span class="line">                    &lt;Link to=<span class="string">&quot;/index&quot;</span>&gt;首页&lt;/Link&gt;</span><br><span class="line">                    &lt;Link to=<span class="string">&quot;/list&quot;</span>&gt;列表页&lt;/Link&gt;</span><br><span class="line"></span><br><span class="line">                    &lt;Route path=<span class="string">&quot;/index&quot;</span> component=&#123;Index&#125;&gt;&lt;/Route&gt;</span><br><span class="line">                    &lt;Route path=<span class="string">&quot;/list&quot;</span> component=&#123;List&#125;&gt;&lt;/Route&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/BrowserRouter&gt;   </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意:</p>
+<ul>
+<li>BrowserRouter内部只能放一个子元素</li>
+<li>Route组件类似于判断，路径符合的会被显示</li>
+</ul>
+<h5 id="1-如果没有匹配到路径怎么办？"><a href="#1-如果没有匹配到路径怎么办？" class="headerlink" title="1.如果没有匹配到路径怎么办？"></a>1.如果没有匹配到路径怎么办？</h5><p>当然是显示空白，但是使用<code>&lt;Redirect&gt;</code>组件<br> 路由引入改为</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入路由组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; BrowserRouter, Route,Link,Redirect&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>App写成</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/index&quot;</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/list&quot;</span>&gt;</span>列表页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/index&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Index&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">&quot;/index&quot;</span> /&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span>   </span><br></pre></td></tr></table></figure>
+
+<p>这样当匹配不到路径的时候会被重定向到<code>/index</code></p>
+<h5 id="2-我想把Index组件path定义为-可以吗？"><a href="#2-我想把Index组件path定义为-可以吗？" class="headerlink" title="2.我想把Index组件path定义为/可以吗？"></a>2.我想把<code>Index</code>组件<code>path</code>定义为<code>/</code>可以吗？</h5><p>当然可以，只不过需要注意一些问题</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/list&quot;</span>&gt;</span>列表页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Index&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问，大家会发现，两个组件同时出现，这是因为路由进行的是非精准匹配</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设为组件path</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">str</span>=<span class="string">&quot;/list/hot&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> str2=<span class="string">&quot;/list/discount&quot;</span>;</span><br><span class="line"><span class="comment">//假设为真实访问路径</span></span><br><span class="line"><span class="keyword">let</span> path=<span class="string">&quot;/list&quot;</span>;</span><br><span class="line"><span class="comment">//假设为Route组件判断</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">str</span>.indexOf(path+<span class="string">&quot;/&quot;</span>)==<span class="number">0</span>)&#123;</span><br><span class="line">      alert(<span class="string">&quot;str&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(str2.indexOf(path+<span class="string">&quot;/&quot;</span>)==<span class="number">0</span>)&#123;</span><br><span class="line">      alert(<span class="string">&quot;str2&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 真实路径  /             path:/   </span></span><br><span class="line"><span class="comment">// 真实路径  /list         path:/  /list  </span></span><br><span class="line"><span class="comment">// 真实路径  /list/abc     path:/  /list  /list/abc</span></span><br></pre></td></tr></table></figure>
+
+<p>毫无悬念，会弹出两次，相信也都已经理解了，怎么解决这个问题？</p>
+<h6 id="1-exact"><a href="#1-exact" class="headerlink" title="1.exact"></a>1.exact</h6><p>给Route组件添加exact进行精准匹配，相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path&#x3D;&#x3D;str1</span><br><span class="line">path&#x3D;&#x3D;str2</span><br></pre></td></tr></table></figure>
+
+<p>你可能觉得非精准匹配的存在是一个烦恼，其实到嵌套路由时它的作用就凸显出来了</p>
+<p>App组件代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/list&quot;</span>&gt;</span>列表页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/&quot;</span> <span class="attr">exact</span> <span class="attr">component</span>=<span class="string">&#123;Index&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">exact</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<h6 id="2-Switch"><a href="#2-Switch" class="headerlink" title="2.Switch"></a>2.Switch</h6><p>只显示一个，匹配成功之后不再往下查找，但是不是精准查找，实际开发过程中需要加上exact</p>
+<p>路由引入改为</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入路由组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; BrowserRouter, Route,Link,Redirect,Switch&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>App写成</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/list&quot;</span>&gt;</span>列表页<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Switch</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Index&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">Switch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span>   </span><br></pre></td></tr></table></figure>
+
+<p>说完Route组件再来看一下Link，这个组件最终会被解析成a标签，在有些场景下使用会很受限，例如程序执行到某个环节需要路由进行跳转，类似location.href或者说Vue中的router.push。BrowserRouter组件外层包括，将路由信息注入到每个路由组件的props上。接下来将Link换成button</p>
+<h5 id="注意：因为App组件不是路由组件，所以该组件内部的props访问不到路由信息"><a href="#注意：因为App组件不是路由组件，所以该组件内部的props访问不到路由信息" class="headerlink" title="注意：因为App组件不是路由组件，所以该组件内部的props访问不到路由信息"></a>注意：因为App组件不是路由组件，所以该组件内部的props访问不到路由信息</h5><p>对组件嵌套结构进行改造：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建Content组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Content</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">super</span>(props);</span><br><span class="line">        <span class="built_in">console</span>.log(props);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h1&gt;hello React!&lt;/h1&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="function">()=&gt;</span>&#123;<span class="built_in">this</span>.props.history.push(<span class="string">&quot;/&quot;</span>)&#125;&#125;&gt;Index&lt;/button&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="function">()=&gt;</span>&#123;<span class="built_in">this</span>.props.history.push(<span class="string">&quot;/list&quot;</span>)&#125;&#125;&gt;List&lt;/button&gt;</span><br><span class="line">                &lt;Switch&gt;</span><br><span class="line">                    &lt;Route path=<span class="string">&quot;/&quot;</span> exact component=&#123;Index&#125;&gt;&lt;/Route&gt;</span><br><span class="line">                    &lt;Route path=<span class="string">&quot;/list&quot;</span> component=&#123;List&#125;&gt;&lt;/Route&gt;</span><br><span class="line">                &lt;/Switch&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建App根组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">                &lt;Route path=<span class="string">&quot;/&quot;</span> component=&#123;Content&#125;&gt;&lt;/Route&gt;   </span><br><span class="line">            &lt;/BrowserRouter&gt; </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="withRouter"><a href="#withRouter" class="headerlink" title="withRouter"></a>withRouter</h5><p>如上代码，用Route组件包括Content组件将路由信息注入组件。组件内部需要访问路由对象时这样做就太过麻烦了，默认情况下，只有经过路由匹配渲染的组件才能访问路由对象下的属性和方法，然而不是所有组件都与路由相连，我们可以使用withRouter将路由对象注入到组件</p>
+<p>首先引入withRouter</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入路由组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; BrowserRouter, Route,Link,Redirect,Switch,withRouter&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码修改如下</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建Content组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Content</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">super</span>(props);</span><br><span class="line">        <span class="built_in">console</span>.log(props);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h1&gt;hello React!&lt;/h1&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="function">()=&gt;</span>&#123;<span class="built_in">this</span>.props.history.push(<span class="string">&quot;/&quot;</span>)&#125;&#125;&gt;Index&lt;/button&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="function">()=&gt;</span>&#123;<span class="built_in">this</span>.props.history.push(<span class="string">&quot;/list&quot;</span>)&#125;&#125;&gt;List&lt;/button&gt;</span><br><span class="line">                &lt;Switch&gt;</span><br><span class="line">                    &lt;Route path=<span class="string">&quot;/&quot;</span> exact component=&#123;Index&#125;&gt;&lt;/Route&gt;</span><br><span class="line">                    &lt;Route path=<span class="string">&quot;/list&quot;</span> component=&#123;List&#125;&gt;&lt;/Route&gt;</span><br><span class="line">                &lt;/Switch&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将路由对象注入到组件</span></span><br><span class="line">Content=withRouter(Content)</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建App根组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;BrowserRouter&gt;</span><br><span class="line">                &lt;Content/&gt;<span class="comment">//这里直接使用组件即可</span></span><br><span class="line">            &lt;/BrowserRouter&gt; </span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Link-or-NavLink"><a href="#Link-or-NavLink" class="headerlink" title="Link or NavLink"></a>Link or NavLink</h5><p>在4.0版本中，这两个组件都可以解析为a链接进行页面跳转，工作方式相同，但是NavLink可以根据路由匹配提供一些样式功能，代码如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span> <span class="attr">exact</span> <span class="attr">activeClassName</span>=<span class="string">&quot;active&quot;</span>&gt;</span>Index<span class="tag">&lt;/<span class="name">NavLink</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">to</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">activeClassName</span>=<span class="string">&quot;active&quot;</span>&gt;</span>List<span class="tag">&lt;/<span class="name">NavLink</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">                <span class="tag">&lt;<span class="name">Switch</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Index&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">Switch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span>   </span><br></pre></td></tr></table></figure>
+
+<p>当匹配路径为<code>/</code>时对应<code>a</code>链接会有<code>active</code>类名，生效对应样式</p>
+<h5 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h5><p>Route组件通过上面的使用，应该不陌生了，匹配路径显示对应组件，基础用法存在一些局限性：</p>
+<h6 id="1-当需要往路由组件额外传一些props时"><a href="#1-当需要往路由组件额外传一些props时" class="headerlink" title="1.当需要往路由组件额外传一些props时"></a>1.当需要往路由组件额外传一些<code>props</code>时</h6><p>这种写法在<code>List</code>组件内部是接收不到<code>age</code>的</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">component</span>=<span class="string">&#123;List&#125;</span> <span class="attr">age</span>=<span class="string">&quot;20&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要借助<code>render</code>属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">render</span>=<span class="string">&#123;(props)</span>=&gt;</span>&#123;</span><br><span class="line">        return <span class="tag">&lt;<span class="name">List</span> <span class="attr">age</span>=<span class="string">&quot;20&quot;</span>/&gt;</span></span><br><span class="line">&#125;&#125;&gt;<span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>render</code>指向一个函数式组件将List组件返回，这样就可以在List组件上随意定义props，此种情况下List不再属于路由组件，所以访问不到路由相关对象，但是箭头函数props中包含路由相关信息，所以</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">&quot;/list&quot;</span> <span class="attr">render</span>=<span class="string">&#123;(props)</span>=&gt;</span>&#123;</span><br><span class="line">        return <span class="tag">&lt;<span class="name">List</span> &#123;<span class="attr">...props</span>&#125; <span class="attr">age</span>=<span class="string">&quot;20&quot;</span>/&gt;</span></span><br><span class="line">&#125;&#125;&gt;<span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一切照常进行</p>
+<h6 id="2-当在匹配跳转之前进行一些拦截时（如登录验证）"><a href="#2-当在匹配跳转之前进行一些拦截时（如登录验证）" class="headerlink" title="2.当在匹配跳转之前进行一些拦截时（如登录验证）"></a>2.当在匹配跳转之前进行一些拦截时（如登录验证）</h6><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">&quot;/list&quot;</span> render=&#123;<span class="function">(<span class="params">props</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.state.login)&#123;<span class="comment">//根据登录状态决定如何响应</span></span><br><span class="line">                <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">List</span> &#123;<span class="attr">...props</span>&#125; <span class="attr">age</span>=<span class="string">&quot;20&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">List</span>&gt;</span></span>)    </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>(<span class="xml"><span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">&quot;/login&quot;</span>&gt;</span>)</span></span><br><span class="line"><span class="xml">        &#125;  </span></span><br><span class="line"><span class="xml">&#125;&#125;&gt;<span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\绯幽\AppData\Roaming\Typora\typora-user-images\image-20210425092047688.png" alt="image-20210425092047688"></p>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/04/25/React-router-V4-0/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/04/25/React-router-V4-0/";
+            const title         = "「React-router V4.0」";
+            const excerpt       = `
+React Router更新到4.0，使用起来发生了很大的变化，这个变化只要是指***完全***的组件化—–嵌套的JSX路由器！接下来，像刚接触路由一样的姿势，一探究竟（简书文字太小，建议大家调整一下页面比例）
+
+使用React脚手...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/Router/" rel="tag">Router</a>, <a class="tag-none-link" href="/tags/react/" rel="tag">react</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2021-07-28</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 前端开发网站" href="/2021/04/23/前端开发网站/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" Vue的防抖(debounce)和节流(throttle)函数" href="/2021/07/28/Vue的防抖-debounce-和节流-throttle-函数/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+    </article>
+</section>
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/acg15.jpg" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Router/" style="font-size: 0.6em;">Router</a> <a href="/tags/react/" style="font-size: 0.6em;">react</a> <a href="/tags/vue/" style="font-size: 0.8em;">vue</a> <a href="/tags/vuex/" style="font-size: 0.6em;">vuex</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 0.6em;">工具</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/28/Vue%E7%9A%84%E9%98%B2%E6%8A%96-debounce-%E5%92%8C%E8%8A%82%E6%B5%81-throttle-%E5%87%BD%E6%95%B0/"><i class="fa  fa-book"></i> Vue的防抖(debounce)和节流(throttle)函数</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/04/25/React-router-V4-0/"><i class="fa  fa-book"></i> React-router V4.0</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/04/23/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%BD%91%E7%AB%99/"><i class="fa  fa-book"></i> 前端开发网站</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/04/23/vuex%E5%88%B7%E6%96%B0%E4%BF%9D%E5%AD%98%E7%8A%B6%E6%80%81%E3%80%81%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E4%BF%9D%E5%AD%98/"><i class="fa  fa-book"></i> vuex刷新保存状态、登录状态保存</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/04/22/My-First-Artical/"><i class="fa  fa-book"></i> My First Artical</a>
+            
+          
+        
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2021 Hexo 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by John Doe.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
